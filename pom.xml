@@ -6,7 +6,7 @@
     <groupId>org.jenkins-ci</groupId>
     <artifactId>jenkins</artifactId>
     <version>1.99</version>
-    <relativePath />
+    <relativePath/>
   </parent>
 
   <groupId>org.jenkins-ci.tests</groupId>
@@ -31,7 +31,7 @@
     <slf4j.version>2.0.7</slf4j.version>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotless.check.skip>false</spotless.check.skip>
-    <argLine />
+    <argLine/>
   </properties>
 
   <dependencyManagement>
@@ -59,7 +59,7 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.12.0</version>
+      <version>2.14.0</version>
     </dependency>
     <dependency>
       <groupId>commons-lang</groupId>
@@ -206,21 +206,21 @@
             <configuration>
               <target>
                 <!-- Keep in sync with logic in jenkinsci/bom/prep.sh -->
-                <mkdir dir="${project.build.directory}/jenkins" />
+                <mkdir dir="${project.build.directory}/jenkins"/>
                 <echo file="${project.build.directory}/jenkins/split-plugins.txt"># nothing</echo>
-                <delete dir="${project.build.directory}/megawar" />
-                <unzip dest="${project.build.directory}/megawar" src="${project.build.directory}/jenkins-war-${jenkins.version}.war" />
-                <jar basedir="${project.build.directory}" destfile="${project.build.directory}/megawar/WEB-INF/lib/jenkins-core-${jenkins.version}.jar" includes="jenkins/split-plugins.txt" update="true" />
+                <delete dir="${project.build.directory}/megawar"/>
+                <unzip dest="${project.build.directory}/megawar" src="${project.build.directory}/jenkins-war-${jenkins.version}.war"/>
+                <jar basedir="${project.build.directory}" destfile="${project.build.directory}/megawar/WEB-INF/lib/jenkins-core-${jenkins.version}.jar" includes="jenkins/split-plugins.txt" update="true"/>
                 <copy todir="${project.build.directory}/megawar/WEB-INF/plugins">
                   <fileset dir="${project.build.directory}/test-classes/test-dependencies">
-                    <include name="**/*.hpi" />
+                    <include name="**/*.hpi"/>
                   </fileset>
                 </copy>
-                <delete dir="${project.build.directory}/megawar/WEB-INF/detached-plugins" />
-                <delete file="${project.build.directory}/megawar/META-INF/JENKINS.RSA" />
-                <delete file="${project.build.directory}/megawar/META-INF/JENKINS.SF" />
+                <delete dir="${project.build.directory}/megawar/WEB-INF/detached-plugins"/>
+                <delete file="${project.build.directory}/megawar/META-INF/JENKINS.RSA"/>
+                <delete file="${project.build.directory}/megawar/META-INF/JENKINS.SF"/>
                 <war destfile="${project.build.directory}/megawar.war" manifest="${project.build.directory}/megawar/META-INF/MANIFEST.MF">
-                  <fileset dir="${project.build.directory}/megawar" />
+                  <fileset dir="${project.build.directory}/megawar"/>
                 </war>
               </target>
             </configuration>
@@ -246,8 +246,8 @@
                     <Implementation-Build-Is-Tainted>${buildIsTainted}</Implementation-Build-Is-Tainted>
                   </manifestEntries>
                 </transformer>
-                <transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
-                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer"/>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
               </transformers>
               <filters>
                 <filter>
